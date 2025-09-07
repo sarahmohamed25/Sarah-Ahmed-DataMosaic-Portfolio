@@ -55,6 +55,7 @@
             font-weight: 800;
             text-decoration: none;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .logo:hover {
@@ -77,6 +78,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .nav-link:hover {
@@ -324,7 +326,7 @@
             font-weight: 700;
         }
 
-        /* Awards Section */
+        /* Awards Section - CLEANED UP */
         .awards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -335,7 +337,7 @@
         .award-item {
             background: linear-gradient(135deg, var(--emerald-teal), var(--neon-cyan));
             color: white;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 15px;
             text-align: center;
             position: relative;
@@ -351,12 +353,14 @@
 
         .award-title {
             font-weight: 700;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
         .award-details {
             opacity: 0.9;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* Contact Section */
@@ -558,13 +562,13 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="#" class="logo" onclick="showPage('home')">DataMosaic</a>
+            <div class="logo" onclick="showPage('home')">DataMosaic</div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#" class="nav-link active" onclick="showPage('home')">About Me</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('experience')">Work Experience</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('certifications')">Certifications</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('research')">Research Projects</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('technical')">Technical Projects</a></li>
+                <li><a class="nav-link active" onclick="showPage('home')">About Me</a></li>
+                <li><a class="nav-link" onclick="showPage('experience')">Work Experience</a></li>
+                <li><a class="nav-link" onclick="showPage('certifications')">Certifications</a></li>
+                <li><a class="nav-link" onclick="showPage('research')">Research Projects</a></li>
+                <li><a class="nav-link" onclick="showPage('technical')">Technical Projects</a></li>
             </ul>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
         </nav>
@@ -587,7 +591,7 @@
                         </p>
                         <div class="cta-buttons">
                             <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                            <a href="#" class="btn btn-secondary" onclick="showPage('technical')">View My Work</a>
+                            <a class="btn btn-secondary" onclick="showPage('technical')">View My Work</a>
                         </div>
                     </div>
                 </div>
@@ -658,36 +662,24 @@
                 </div>
             </section>
 
-            <!-- Awards Section -->
+            <!-- Awards Section - CLEANED UP -->
             <section class="section">
                 <div class="container">
                     <h2 class="section-title">Awards & Recognition</h2>
                     <div class="awards-grid">
                         <div class="award-item">
                             <div class="award-title">Presidential Award</div>
-                            <div class="award-details">Bay Atlantic University (2024)<br>$2,000 Tuition Scholarship</div>
-                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
-                                <i style="color: white;">🏆</i>
-                                <p style="color: white;"><strong>Upload award certificate</strong></p>
-                            </div>
+                            <div class="award-details">Bay Atlantic University (2024)<br>$2,000 Tuition Scholarship for exceptional academic performance</div>
                         </div>
 
                         <div class="award-item">
                             <div class="award-title">Summa Cum Laude</div>
-                            <div class="award-details">Perfect 4.0 GPA<br>Highest Academic Honor</div>
-                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
-                                <i style="color: white;">📜</i>
-                                <p style="color: white;"><strong>Upload academic transcript</strong></p>
-                            </div>
+                            <div class="award-details">Perfect 4.0 GPA<br>Highest Academic Honor recognizing outstanding scholarly achievement</div>
                         </div>
 
                         <div class="award-item">
                             <div class="award-title">President's List</div>
-                            <div class="award-details">Fall 2023 & Spring 2024<br>Outstanding Academic Achievement</div>
-                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
-                                <i style="color: white;">⭐</i>
-                                <p style="color: white;"><strong>Upload recognition letters</strong></p>
-                            </div>
+                            <div class="award-details">Fall 2023 & Spring 2024<br>Outstanding Academic Achievement for exceptional semester performance</div>
                         </div>
                     </div>
                 </div>
@@ -1192,7 +1184,7 @@
     </footer>
 
     <script>
-        // Page Navigation
+        // Page Navigation - FIXED VERSION
         function showPage(pageId) {
             console.log('Attempting to show page:', pageId);
             
@@ -1238,7 +1230,9 @@
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            if (navMenu) {
+                navMenu.classList.toggle('active');
+            }
         }
 
         // Smooth scrolling for anchor links
@@ -1376,3 +1370,6 @@
         function sendMessage() {
             alert('Contact functionality will be implemented when you deploy the website!');
         }
+    </script>
+</body>
+</html>
