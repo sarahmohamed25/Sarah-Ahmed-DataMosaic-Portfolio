@@ -1194,13 +1194,23 @@
     <script>
         // Page Navigation
         function showPage(pageId) {
+            console.log('Attempting to show page:', pageId);
+            
             // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
+            const pages = document.querySelectorAll('.page');
+            console.log('Found pages:', pages.length);
+            pages.forEach(page => {
                 page.classList.remove('active');
+                page.style.display = 'none';
             });
 
             // Show selected page
-            document.getElementById(pageId).classList.add('active');
+            const targetPage = document.getElementById(pageId);
+            console.log('Target page found:', targetPage ? 'yes' : 'no');
+            if (targetPage) {
+                targetPage.classList.add('active');
+                targetPage.style.display = 'block';
+            }
 
             // Update active nav link
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1208,11 +1218,10 @@
             });
             
             // Find the link that was clicked and add active class
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
-                    link.classList.add('active');
-                }
-            });
+            const clickedLinks = document.querySelectorAll(`[onclick*="${pageId}"]`);
+            if (clickedLinks.length > 0) {
+                clickedLinks[0].classList.add('active');
+            }
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1222,6 +1231,8 @@
             if (navMenu) {
                 navMenu.classList.remove('active');
             }
+            
+            return false; // Prevent default link behavior
         }
 
         // Mobile Menu Toggle
