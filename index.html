@@ -1206,13 +1206,22 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
             });
-            event.target.classList.add('active');
+            
+            // Find the link that was clicked and add active class
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
 
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             // Close mobile menu if open
-            document.getElementById('navMenu').classList.remove('active');
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.remove('active');
+            }
         }
 
         // Mobile Menu Toggle
