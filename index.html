@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Ahmed | DataMosaic Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --midnight-navy: #0A192F;
+            --soft-light-gray: #F8F9FA;
+            --emerald-teal: #00A896;
+            --amber-gold: #FFD166;
+            --neon-cyan: #64FFDA;
+            --slate-gray: #8892B0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--midnight-navy);
+            background: var(--soft-light-gray);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--midnight-navy);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(10, 25, 47, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--amber-gold);
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--slate-gray);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-cyan);
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--emerald-teal);
+            background: rgba(0, 168, 150, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Content */
+        .page-content {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Home Page - Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--midnight-navy) 0%, #1a2332 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(255, 209, 102, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--amber-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: var(--emerald-teal);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--slate-gray);
+            line-height: 1.8;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--emerald-teal), var(--neon-cyan));
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 168, 150, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 168, 150, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--amber-gold);
+            border: 2px solid var(--amber-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--amber-gold);
+            color: var(--midnight-navy);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--midnight-navy);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--emerald-teal), var(--neon-cyan));
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(10, 25, 47, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--emerald-teal), var(--neon-cyan));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(10, 25, 47, 0.15);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Education Cards */
+        .education-card {
+            position: relative;
+        }
+
+        .degree-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--midnight-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--emerald-teal);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .degree-details {
+            color: var(--slate-gray);
+            line-height: 1.6;
+        }
+
+        .gpa-highlight {
+            background: linear-gradient(45deg, var(--amber-gold), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* Awards Section */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .award-item {
+            background: linear-gradient(135deg, var(--emerald-teal), var(--neon-cyan));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-item::before {
+            content: '🏆';
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .award-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-details {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-item:hover {
+            border-color: var(--emerald-teal);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--emerald-teal);
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--midnight-navy);
+        }
+
+        .contact-link {
+            color: var(--slate-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--emerald-teal);
+        }
+
+        /* Page Navigation */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--midnight-navy);
+            color: var(--slate-gray);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        /* Media Upload Areas */
+        .media-placeholder {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(255, 209, 102, 0.1));
+            border: 2px dashed var(--emerald-teal);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--slate-gray);
+            transition: all 0.3s ease;
+        }
+
+        .media-placeholder:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.2), rgba(255, 209, 102, 0.2));
+            border-color: var(--amber-gold);
+        }
+
+        .media-placeholder i {
+            font-size: 2rem;
+            color: var(--emerald-teal);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--midnight-navy);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Special Highlights */
+        .highlight-text {
+            background: linear-gradient(45deg, var(--emerald-teal), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .research-interests {
+            background: linear-gradient(135deg, var(--midnight-navy), #1a2332);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-interests::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--emerald-teal), var(--amber-gold));
+        }
+
+        .research-interests h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .research-interests p {
+            color: var(--slate-gray);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">DataMosaic</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active" onclick="showPage('home')">About Me</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('experience')">Work Experience</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('certifications')">Certifications</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('research')">Research Projects</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('technical')">Technical Projects</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        
+        <!-- HOME PAGE (About Me) -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Sarah Ahmed</h1>
+                        <p class="subtitle">Data Scientist | Research Scientist | AI Healthcare Innovator</p>
+                        <p class="description">
+                            Bridging biosciences, big data, and AI for real-world impact. Developing intelligent 
+                            healthcare solutions through interdisciplinary research and cutting-edge data science.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                            <a href="#" class="btn btn-secondary" onclick="showPage('technical')">View My Work</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Education</h2>
+                    <div class="grid grid-3">
+                        <div class="card education-card">
+                            <div class="degree-title">Master of Science in Big Data Analytics</div>
+                            <div class="institution">Bay Atlantic University, Washington, DC</div>
+                            <div class="degree-details">
+                                <p><span class="gpa-highlight">Summa Cum Laude | 4.0 CGPA</span></p>
+                                <p>Presidential Award Winner</p>
+                                <p>President's List (Fall 2023, Spring 2024)</p>
+                                <div class="media-placeholder">
+                                    <i>📜</i>
+                                    <p><strong>Upload your degree certificate and transcripts here</strong></p>
+                                    <small>Drag and drop or click to upload images</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card education-card">
+                            <div class="degree-title">Master of Science in Biosciences</div>
+                            <div class="institution">COMSATS University, Islamabad</div>
+                            <div class="degree-details">
+                                <p><span class="gpa-highlight">3.63 CGPA</span></p>
+                                <p>Thesis: Nanobiotechnology & Antimicrobial Resistance</p>
+                                <p>Specialized in nanobiotechnology and drug delivery systems</p>
+                                <div class="media-placeholder">
+                                    <i>📜</i>
+                                    <p><strong>Upload your degree certificate here</strong></p>
+                                    <small>Include thesis documentation if available</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card education-card">
+                            <div class="degree-title">Bachelor of Science in Environmental Sciences</div>
+                            <div class="institution">Bahria University, Islamabad</div>
+                            <div class="degree-details">
+                                <p><span class="gpa-highlight">3.51 CGPA</span></p>
+                                <p>Thesis: Food Safety & Environmental Health</p>
+                                <p>Focus on environmental health and contamination analysis</p>
+                                <div class="media-placeholder">
+                                    <i>📜</i>
+                                    <p><strong>Upload your degree certificate here</strong></p>
+                                    <small>Add any relevant coursework highlights</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Research Interests -->
+                    <div class="research-interests">
+                        <h3>Research Interests</h3>
+                        <p>
+                            Developing intelligent AI agents to address healthcare challenges in the United States. 
+                            My interdisciplinary background in biosciences and data analytics provides unique domain 
+                            expertise for creating AI systems that account for biological complexity and real-world 
+                            clinical constraints. I am particularly interested in leveraging machine learning and 
+                            experimental design principles to build robust, clinically relevant healthcare solutions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Awards Section -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Awards & Recognition</h2>
+                    <div class="awards-grid">
+                        <div class="award-item">
+                            <div class="award-title">Presidential Award</div>
+                            <div class="award-details">Bay Atlantic University (2024)<br>$2,000 Tuition Scholarship</div>
+                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
+                                <i style="color: white;">🏆</i>
+                                <p style="color: white;"><strong>Upload award certificate</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="award-item">
+                            <div class="award-title">Summa Cum Laude</div>
+                            <div class="award-details">Perfect 4.0 GPA<br>Highest Academic Honor</div>
+                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
+                                <i style="color: white;">📜</i>
+                                <p style="color: white;"><strong>Upload academic transcript</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="award-item">
+                            <div class="award-title">President's List</div>
+                            <div class="award-details">Fall 2023 & Spring 2024<br>Outstanding Academic Achievement</div>
+                            <div class="media-placeholder" style="margin-top: 1rem; background: rgba(255,255,255,0.2);">
+                                <i style="color: white;">⭐</i>
+                                <p style="color: white;"><strong>Upload recognition letters</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title">Contact Me</h2>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-title">Email</div>
+                            <a href="mailto:ahmedsarah850@gmail.com" class="contact-link">ahmedsarah850@gmail.com</a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-title">Phone</div>
+                            <a href="tel:+12025278554" class="contact-link">+1 (202) 527-8554</a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-title">LinkedIn</div>
+                            <a href="https://www.linkedin.com/in/sarahahmed-dataanalyst" target="_blank" class="contact-link">
+                                linkedin.com/in/sarahahmed-dataanalyst
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">💻</div>
+                            <div class="contact-title">GitHub</div>
+                            <a href="https://github.com/sarahmohamed25" target="_blank" class="contact-link">
+                                github.com/sarahmohamed25
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- WORK EXPERIENCE PAGE -->
+        <div id="experience" class="page">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); font-size: 1.4rem; margin-bottom: 0.5rem;">Data Scientist Volunteer</h3>
+                            <p style="color: var(--amber-gold); font-weight: 600; margin-bottom: 0.5rem;">Animal Welfare Data Centre • Remote</p>
+                            <p style="color: var(--slate-gray); margin-bottom: 1rem; font-size: 0.9rem;">Jun 2025 – Present</p>
+                            <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                <li>Design and train supervised/unsupervised ML models to evaluate compliance and operational trends across shelter networks</li>
+                                <li>Fine-tune NLP models (spaCy, Transformers) to extract insights from staff notes and policy texts</li>
+                                <li>Conduct A/B testing and cross-validation across demographics to optimize model performance</li>
+                                <li>Collaborate with engineers to deploy models via APIs and Oracle Autonomous Database</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); font-size: 1.4rem; margin-bottom: 0.5rem;">Data Analyst Intern</h3>
+                            <p style="color: var(--amber-gold); font-weight: 600; margin-bottom: 0.5rem;">WeVestr • Remote</p>
+                            <p style="color: var(--slate-gray); margin-bottom: 1rem; font-size: 0.9rem;">Jan 2025 – Apr 2025</p>
+                            <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                <li><span class="highlight-text">Improved retention tracking and revenue forecasting accuracy by 20%</span> through end-to-end data analysis and predictive modeling</li>
+                                <li><span class="highlight-text">Reduced manual reporting time by 30%</span> by developing KPIs and dashboards using Python and Excel</li>
+                                <li>Analyzed sales pipeline trends and segmented customer behavior to identify high-conversion and at-risk cohorts</li>
+                                <li>Delivered actionable insights to cross-functional teams, improving stakeholder alignment</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); font-size: 1.4rem; margin-bottom: 0.5rem;">Admissions Officer | Data Operations Associate</h3>
+                            <p style="color: var(--amber-gold); font-weight: 600; margin-bottom: 0.5rem;">Bay Atlantic University • Washington, DC</p>
+                            <p style="color: var(--slate-gray); margin-bottom: 1rem; font-size: 0.9rem;">Aug 2023 – Nov 2024</p>
+                            <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                <li><span class="highlight-text">Improved pipeline consistency by 25%</span> through streamlined Salesforce CRM and Excel data management</li>
+                                <li>Built dashboards to track enrollment KPIs and forecast trends, <span class="highlight-text">reducing manual reporting time by 30%</span></li>
+                                <li>Streamlined onboarding workflows, <span class="highlight-text">reducing processing delays by 20%</span></li>
+                                <li>Supported <span class="highlight-text">10% increase in applicant targeting</span> through structured campaign segmentation reports</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); font-size: 1.4rem; margin-bottom: 0.5rem;">Account Manager</h3>
+                            <p style="color: var(--amber-gold); font-weight: 600; margin-bottom: 0.5rem;">CrossNotch Factory • Remote</p>
+                            <p style="color: var(--slate-gray); margin-bottom: 1rem; font-size: 0.9rem;">Jul 2022 – Jul 2023</p>
+                            <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                <li>Managed strategic B2B accounts and tracked sales pipeline activity in Salesforce CRM</li>
+                                <li><span class="highlight-text">Improved renewal strategies by 15%</span> through campaign outcome and ROI analysis</li>
+                                <li><span class="highlight-text">Increased cross-sell conversion by 18%</span> with account segmentation reports</li>
+                                <li>Strengthened revenue forecasting by aligning insights with territory planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CERTIFICATIONS PAGE -->
+        <div id="certifications" class="page">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2 class="section-title">Professional Certifications</h2>
+                    
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); margin-bottom: 1rem;">Google Professional Certificates</h3>
+                            <div style="space-y: 1rem;">
+                                <div style="margin-bottom: 1rem;">
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Google Data Analytics Professional Certificate (2024)</h4>
+                                    <div class="media-placeholder">
+                                        <i>🎓</i>
+                                        <p><strong>Upload your Google Data Analytics certificate</strong></p>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Google IT Automation with Python (2024)</h4>
+                                    <div class="media-placeholder">
+                                        <i>🐍</i>
+                                        <p><strong>Upload your Python automation certificate</strong></p>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Google AI Essentials (2024)</h4>
+                                    <div class="media-placeholder">
+                                        <i>🤖</i>
+                                        <p><strong>Upload your AI Essentials certificate</strong></p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Google Cloud Fundamentals (2024)</h4>
+                                    <div class="media-placeholder">
+                                        <i>☁️</i>
+                                        <p><strong>Upload your Cloud Fundamentals certificate</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--emerald-teal); margin-bottom: 1rem;">Technical Training & Specialized Skills</h3>
+                            <div style="space-y: 1rem;">
+                                <div style="margin-bottom: 1rem;">
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Software Training – GrADS & Surfer (2018)</h4>
+                                    <p style="color: var(--slate-gray);">Bahria University - Advanced meteorological data analysis tools</p>
+                                    <div class="media-placeholder">
+                                        <i>📊</i>
+                                        <p><strong>Upload software training certificates</strong></p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 style="color: var(--midnight-navy); font-weight: 600;">Climate Change Training (2016)</h4>
+                                    <p style="color: var(--slate-gray);">CDA Training Academy - Environmental impact assessment</p>
+                                    <div class="media-placeholder">
+                                        <i>🌍</i>
+                                        <p><strong>Upload climate training certificate</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Showcase -->
+                    <div style="margin-top: 3rem;">
+                        <h3 style="text-align: center; color: var(--midnight-navy); margin-bottom: 2rem; font-size: 2rem;">Technical Skills Portfolio</h3>
+                        <div class="grid grid-3">
+                            <div class="card">
+                                <h4 style="color: var(--emerald-teal); margin-bottom: 1rem;">💻 Programming & Tools</h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Python</span>
+                                    <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">SQL</span>
+                                    <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">R</span>
+                                    <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Excel</span>
+                                    <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">GitHub</span>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h4 style="color: var(--emerald-teal); margin-bottom: 1rem;">🤖 Machine Learning</h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Scikit-learn</span>
+                                    <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">NLP</span>
+                                    <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Transformers</span>
+                                    <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Prophet</span>
+                                    <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">A/B Testing</span>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h4 style="color: var(--emerald-teal); margin-bottom: 1rem;">💼 Business Intelligence</h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Salesforce</span>
+                                    <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Power BI</span>
+                                    <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Tableau</span>
+                                    <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Oracle DB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- RESEARCH PROJECTS PAGE -->
+        <div id="research" class="page">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2 class="section-title">Academic Research Projects</h2>
+                    <p style="text-align: center; color: var(--slate-gray); font-size: 1.1rem; margin-bottom: 3rem;">
+                        Graduate-level research spanning nanobiotechnology, antimicrobial resistance, and environmental health
+                    </p>
+
+                    <!-- MS Thesis Research -->
+                    <div class="card" style="margin-bottom: 3rem;">
+                        <div style="border-left: 4px solid var(--emerald-teal); padding-left: 1.5rem;">
+                            <h3 style="color: var(--emerald-teal); font-size: 1.6rem; margin-bottom: 1rem;">MS Thesis Research</h3>
+                            <h4 style="color: var(--midnight-navy); font-size: 1.3rem; margin-bottom: 1rem;">
+                                Synergistic Efficacy of Antibiotic and Enzyme Inhibitor Embedded in Core-Shell Nano Delivery Systems to Overcome Resistant Pathogen
+                            </h4>
+                            <p style="color: var(--amber-gold); font-weight: 600; margin-bottom: 1rem;">
+                                COMSATS University Islamabad | Jun 2021 – Jul 2022
+                            </p>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Research Objectives:</h5>
+                                <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                    <li>Designed and developed core–shell nano drug delivery systems (CS-NDDS) encapsulating β-lactam antibiotics and β-lactamase inhibitors using soya lecithin and chitosan polymers</li>
+                                    <li>Conducted antimicrobial resistance profiling and comparative efficacy studies against multi-drug resistant Klebsiella pneumoniae strains</li>
+                                    <li>Applied advanced characterization techniques (SEM, FTIR, encapsulation efficiency, release kinetics) to evaluate nanocarrier morphology and performance</li>
+                                    <li>Demonstrated that CS-NDDS significantly inhibited bacterial growth and biofilm formation compared to free drugs</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Key Findings & Impact:</h5>
+                                <p style="color: var(--slate-gray); line-height: 1.7;">
+                                    Successfully developed a novel therapeutic approach against carbapenem-resistant pathogens, 
+                                    providing a potential solution to one of the most pressing challenges in modern medicine - 
+                                    antimicrobial resistance.
+                                </p>
+                            </div>
+
+                            <div class="media-placeholder">
+                                <i>🔬</i>
+                                <p><strong>Upload Research Documentation</strong></p>
+                                <small>Include: SEM images, FTIR spectra, experimental results, thesis document, research presentations</small>
+                            </div>
+
+                            <div style="margin-top: 1rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Publications in Preparation:</h5>
+                                <div style="background: rgba(100, 255, 218, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <p style="color: var(--slate-gray); font-style: italic;">
+                                        "Development and Physicochemical Characterization of Core-Shell Nanocarriers Co-Delivering Meropenem and Sulbactam"
+                                    </p>
+                                </div>
+                                <div style="background: rgba(100, 255, 218, 0.1); padding: 1rem; border-radius: 8px;">
+                                    <p style="color: var(--slate-gray); font-style: italic;">
+                                        "Core-Shell Nanocarriers Enhance Antimicrobial and Antibiofilm Efficacy Against Multi-Drug Resistant Klebsiella pneumoniae"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BS Thesis Research -->
+                    <div class="card">
+                        <div style="border-left: 4px solid var(--amber-gold); padding-left: 1.5rem;">
+                            <h3 style="color: var(--amber-gold); font-size: 1.6rem; margin-bottom: 1rem;">BS Thesis Research</h3>
+                            <h4 style="color: var(--midnight-navy); font-size: 1.3rem; margin-bottom: 1rem;">
+                                Evaluation of Microbial and Heavy Metal Contaminants in Local and Imported Packaged Biscuits Available in Islamabad, Pakistan
+                            </h4>
+                            <p style="color: var(--emerald-teal); font-weight: 600; margin-bottom: 1rem;">
+                                Bahria University Islamabad | Apr 2019 – Sep 2019
+                            </p>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Research Methodology:</h5>
+                                <ul style="color: var(--slate-gray); line-height: 1.7;">
+                                    <li>Collected and analyzed 30 biscuit samples (15 local, 15 imported) to evaluate microbial contamination and heavy metal concentrations (nickel, cadmium, chromium, lead)</li>
+                                    <li>Conducted microbial assays using Nutrient Agar, EMB Agar, and S.S Agar</li>
+                                    <li>Applied Atomic Absorption Spectrophotometry (AAS) for heavy metal detection</li>
+                                    <li>Performed statistical analysis using SPSS to assess contamination trends and compliance with WHO and Pakistan food safety standards</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Key Findings & Public Health Impact:</h5>
+                                <p style="color: var(--slate-gray); line-height: 1.7;">
+                                    Identified excessive nickel and chromium contamination in several samples, highlighting 
+                                    significant food safety risks and public health implications. Research contributed to 
+                                    understanding of food contamination patterns in Pakistan's packaged food industry.
+                                </p>
+                            </div>
+
+                            <div class="media-placeholder">
+                                <i>📊</i>
+                                <p><strong>Upload Research Documentation</strong></p>
+                                <small>Include: Lab results, statistical analyses, AAS data, microbial culture photos, thesis document</small>
+                            </div>
+
+                            <div style="margin-top: 1rem;">
+                                <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Publications in Preparation:</h5>
+                                <div style="background: rgba(255, 209, 102, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <p style="color: var(--slate-gray); font-style: italic;">
+                                        "Microbiological Quality Assessment of Local and Imported Packaged Biscuits in Islamabad, Pakistan"
+                                    </p>
+                                </div>
+                                <div style="background: rgba(255, 209, 102, 0.1); padding: 1rem; border-radius: 8px;">
+                                    <p style="color: var(--slate-gray); font-style: italic;">
+                                        "Heavy Metal Contamination in Packaged Biscuits: Nickel and Chromium Exceed WHO Limits in Islamabad Case Study"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TECHNICAL PROJECTS PAGE -->
+        <div id="technical" class="page">
+            <section class="section" style="margin-top: 2rem;">
+                <div class="container">
+                    <h2 class="section-title">Data Science & Analytics Projects</h2>
+                    <p style="text-align: center; color: var(--slate-gray); font-size: 1.1rem; margin-bottom: 3rem;">
+                        Applied data science projects showcasing machine learning, analytics, and business intelligence expertise
+                    </p>
+
+                    <div class="grid grid-2">
+                        <!-- Customer Churn Analysis -->
+                        <div class="card">
+                            <div style="background: linear-gradient(135deg, var(--emerald-teal), var(--neon-cyan)); color: white; padding: 1.5rem; margin: -2rem -2rem 1.5rem -2rem; border-radius: 15px 15px 0 0;">
+                                <h3 style="margin-bottom: 0.5rem;">Customer Churn Analysis - Telecom Industry</h3>
+                                <p style="opacity: 0.9;">Self-guided Project | Machine Learning</p>
+                            </div>
+
+                            <div>
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 1rem;">Project Overview:</h4>
+                                <p style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    Built advanced machine learning models to predict customer churn with 81.7% accuracy, 
+                                    identifying key retention drivers for strategic business decision-making.
+                                </p>
+
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 0.5rem;">Key Achievements:</h4>
+                                <ul style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    <li><span class="highlight-text">81.7% model accuracy</span> using logistic regression and random forest</li>
+                                    <li>Comprehensive EDA on Telco Customer Churn dataset</li>
+                                    <li>Advanced feature engineering and data preprocessing</li>
+                                    <li>Identified high-risk customer segments for targeted retention</li>
+                                </ul>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Tools & Technologies:</h5>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Python</span>
+                                        <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Pandas</span>
+                                        <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Scikit-learn</span>
+                                        <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Matplotlib</span>
+                                        <span style="background: var(--neon-cyan); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Seaborn</span>
+                                    </div>
+                                </div>
+
+                                <div class="media-placeholder">
+                                    <i>📈</i>
+                                    <p><strong>Upload Project Visualizations</strong></p>
+                                    <small>Include: Model performance charts, EDA visualizations, feature importance plots, confusion matrices</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Retail Sales Forecasting -->
+                        <div class="card">
+                            <div style="background: linear-gradient(135deg, var(--amber-gold), #ff9500); color: white; padding: 1.5rem; margin: -2rem -2rem 1.5rem -2rem; border-radius: 15px 15px 0 0;">
+                                <h3 style="margin-bottom: 0.5rem;">Retail Sales Analysis & Forecasting</h3>
+                                <p style="opacity: 0.9;">Self-guided Project | Time Series Analysis</p>
+                            </div>
+
+                            <div>
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 1rem;">Project Overview:</h4>
+                                <p style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    Analyzed 9,800+ retail transactions to uncover revenue trends and customer segments, 
+                                    building predictive models for inventory optimization and strategic decision-making.
+                                </p>
+
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 0.5rem;">Key Achievements:</h4>
+                                <ul style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    <li>Built Prophet time-series models for <span class="highlight-text">90-day sales forecasting</span></li>
+                                    <li>Identified seasonal trends and top-performing product categories</li>
+                                    <li>Created comprehensive KPI dashboards for business insights</li>
+                                    <li>Delivered actionable recommendations for inventory and marketing</li>
+                                </ul>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Tools & Technologies:</h5>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Python</span>
+                                        <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Prophet</span>
+                                        <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Pandas</span>
+                                        <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Excel</span>
+                                        <span style="background: var(--amber-gold); color: var(--midnight-navy); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">KPI Analysis</span>
+                                    </div>
+                                </div>
+
+                                <div class="media-placeholder">
+                                    <i>📊</i>
+                                    <p><strong>Upload Project Results</strong></p>
+                                    <small>Include: Forecasting charts, trend analysis, KPI dashboards, seasonal decomposition plots</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WeVestr Platform Analytics -->
+                        <div class="card">
+                            <div style="background: linear-gradient(135deg, var(--midnight-navy), #1a2332); color: white; padding: 1.5rem; margin: -2rem -2rem 1.5rem -2rem; border-radius: 15px 15px 0 0;">
+                                <h3 style="margin-bottom: 0.5rem;">WeVestr Platform Analytics</h3>
+                                <p style="opacity: 0.9;">Company-guided Project | User Analytics</p>
+                            </div>
+
+                            <div>
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 1rem;">Project Overview:</h4>
+                                <p style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    Analyzed user activity and retention patterns to uncover adoption gaps and engagement 
+                                    opportunities, delivering business intelligence solutions for platform optimization.
+                                </p>
+
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 0.5rem;">Key Achievements:</h4>
+                                <ul style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    <li>Developed business KPIs and BI dashboards for retention tracking</li>
+                                    <li><span class="highlight-text">Improved engagement growth strategies</span> through data-driven insights</li>
+                                    <li>Identified user behavior patterns and feature adoption trends</li>
+                                    <li>Delivered actionable recommendations to product and marketing teams</li>
+                                </ul>
+
+                                <div style="margin-bottom: 1rem;">
+                                    <h5 style="color: var(--midnight-navy); font-weight: 600; margin-bottom: 0.5rem;">Tools & Technologies:</h5>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                        <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Python</span>
+                                        <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Pandas</span>
+                                        <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Matplotlib</span>
+                                        <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">Excel</span>
+                                        <span style="background: var(--emerald-teal); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">BI Reporting</span>
+                                    </div>
+                                </div>
+
+                                <div class="media-placeholder">
+                                    <i>📱</i>
+                                    <p><strong>Upload Project Deliverables</strong></p>
+                                    <small>Include: User analytics dashboards, retention analysis charts, engagement metrics, business reports</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Future Projects Placeholder -->
+                        <div class="card">
+                            <div style="background: linear-gradient(135deg, var(--slate-gray), #6b7280); color: white; padding: 1.5rem; margin: -2rem -2rem 1.5rem -2rem; border-radius: 15px 15px 0 0;">
+                                <h3 style="margin-bottom: 0.5rem;">Upcoming Healthcare AI Project</h3>
+                                <p style="opacity: 0.9;">In Development | AI for Healthcare</p>
+                            </div>
+
+                            <div>
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 1rem;">Project Vision:</h4>
+                                <p style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    Developing intelligent AI agents to address healthcare challenges, leveraging my 
+                                    interdisciplinary background in biosciences and data analytics to create clinically 
+                                    relevant solutions.
+                                </p>
+
+                                <h4 style="color: var(--midnight-navy); margin-bottom: 0.5rem;">Planned Focus Areas:</h4>
+                                <ul style="color: var(--slate-gray); line-height: 1.7; margin-bottom: 1rem;">
+                                    <li>Healthcare data analysis and predictive modeling</li>
+                                    <li>Clinical decision support systems</li>
+                                    <li>Biomedical data integration and analysis</li>
+                                    <li>AI-driven drug discovery and development</li>
+                                </ul>
+
+                                <div class="media-placeholder">
+                                    <i>🚀</i>
+                                    <p><strong>Space for Future Healthcare AI Projects</strong></p>
+                                    <small>This section will showcase upcoming projects in healthcare AI and biomedical data science</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 <span class="footer-brand">Sarah Ahmed | DataMosaic Portfolio</span></p>
+            <p>Bridging biosciences, big data, and AI for real-world impact</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Close mobile menu if open
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(10, 25, 47, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(10, 25, 47, 0.4)';
+            } else {
+                header.style.background = 'var(--midnight-navy)';
+                header.style.boxShadow = '0 4px 20px rgba(10, 25, 47, 0.3)';
+            }
+        });
+
+        // Add interactive hover effects for cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add particle animation to hero section
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                width: 3px;
+                height: 3px;
+                background: rgba(100, 255, 218, 0.6);
+                border-radius: 50%;
+                pointer-events: none;
+                animation: floatUp 8s linear infinite;
+                z-index: 1;
+            `;
+            
+            // Add floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatUp {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(100vh) translateX(0px);
+                    }
+                    10% {
+                        opacity: 1;
+                    }
+                    90% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translateY(-100px) translateX(${Math.random() * 200 - 100}px);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 8000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home page by default
+            showPage('home');
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add interactive elements
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Contact form functionality (placeholder for future enhancement)
+        function sendMessage() {
+            alert('Contact functionality will be implemented when you deploy the website!');
+        }
